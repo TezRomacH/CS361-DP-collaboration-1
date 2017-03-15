@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,16 @@ namespace TextConverter.ConverterBuilders
     {
         protected StringBuilder result;
 
-        public ConverterBuilder Parse(string str)
+        public virtual ConverterBuilder Parse(string str)
         {
-            result.Append(str); 
+            result.Append(str);
 
             return this;
         }
 
-        public string Solve() => result.ToString();
+        public virtual string Solve() => result.ToString();
+
+        public virtual string GetExtension() => ".txt";
     }
 
 }
