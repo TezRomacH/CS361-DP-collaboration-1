@@ -14,24 +14,26 @@ namespace TextConverter
             if (string.IsNullOrWhiteSpace(text))
                 return "";
 
-            foreach (string block in text.Split(new[] { "\n\r\n" }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (string block in text.Split(new[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
-                var innerList = block.Split('\n');
+                var innerList = block.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
                 var keyWord = innerList[0].Trim().Split(' ')[0];
+
+                int substringIndex = Math.Min(keyWord.Length + 1, block.Length);
                 switch (keyWord)
                 {
                     case KeyWords.Text:
-                        builder.AddText(block.Substring(keyWord.Length + 1));
+                        builder.AddText(block.Substring(substringIndex));
                         break;
 
                     case KeyWords.Header1:
-                        builder.AddHeader(block.Substring(keyWord.Length + 1), HeaderLevels.Level1);
+                        builder.AddHeader(block.Substring(substringIndex), HeaderLevels.Level1);
                         break;
                     case KeyWords.Header2:
-                        builder.AddHeader(block.Substring(keyWord.Length + 1), HeaderLevels.Level2);
+                        builder.AddHeader(block.Substring(substringIndex), HeaderLevels.Level2);
                         break;
                     case KeyWords.Header3:
-                        builder.AddHeader(block.Substring(keyWord.Length + 1), HeaderLevels.Level3);
+                        builder.AddHeader(block.Substring(substringIndex), HeaderLevels.Level3);
                         break;
 
                     case KeyWords.OrderedList:
