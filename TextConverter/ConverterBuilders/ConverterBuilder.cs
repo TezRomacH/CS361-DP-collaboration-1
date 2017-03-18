@@ -51,16 +51,5 @@ namespace TextConverter.ConverterBuilders
 
             return this;
         }
-
-    }
-
-    /// <summary>
-    /// Уровни заголовков
-    /// </summary>
-    public enum HeaderLevels
-    {
-        Level1 = 1,
-        Level2,
-        Level3
     }
 }
