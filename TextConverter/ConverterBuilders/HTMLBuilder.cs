@@ -4,7 +4,7 @@ namespace TextConverter.ConverterBuilders
 {
     public class HtmlBuilder : ConverterBuilder
     {
-        public override ConverterBuilder AddHeader(HeaderLevels level, string header)
+        public override ConverterBuilder AddHeader(string header, HeaderLevels level)
         {
             throw new System.NotImplementedException();
         }
@@ -19,7 +19,7 @@ namespace TextConverter.ConverterBuilders
             throw new System.NotImplementedException();
         }
 
-        public override ConverterBuilder AddText(string str)
+        public override ConverterBuilder AddText(string text)
         {
             throw new System.NotImplementedException();
         }

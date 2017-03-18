@@ -26,13 +26,13 @@ namespace TextConverter
                         break;
 
                     case KeyWords.Header1:
-                        builder.AddHeader(HeaderLevels.Level1, block.Substring(keyWord.Length + 1));
+                        builder.AddHeader(block.Substring(keyWord.Length + 1), HeaderLevels.Level1);
                         break;
                     case KeyWords.Header2:
-                        builder.AddHeader(HeaderLevels.Level2, block.Substring(keyWord.Length + 1));
+                        builder.AddHeader(block.Substring(keyWord.Length + 1), HeaderLevels.Level2);
                         break;
                     case KeyWords.Header3:
-                        builder.AddHeader(HeaderLevels.Level3, block.Substring(keyWord.Length + 1));
+                        builder.AddHeader(block.Substring(keyWord.Length + 1), HeaderLevels.Level3);
                         break;
 
                     case KeyWords.OrderedList:

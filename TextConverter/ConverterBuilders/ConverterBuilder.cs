@@ -14,12 +14,12 @@ namespace TextConverter.ConverterBuilders
         /// <summary>
         /// Добавляет обычный текст
         /// </summary>
-        public abstract ConverterBuilder AddText(string str);
+        public abstract ConverterBuilder AddText(string text);
 
         /// <summary>
         /// Добаляет заголовок с уровнем level
         /// </summary>
-        public abstract ConverterBuilder AddHeader(HeaderLevels level, string header);
+        public abstract ConverterBuilder AddHeader(string header, HeaderLevels level);
 
         /// <summary>
         /// Добавляет нумерованный список
