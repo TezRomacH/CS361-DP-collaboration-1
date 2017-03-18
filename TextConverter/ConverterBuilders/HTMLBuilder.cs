@@ -2,7 +2,7 @@
 
 namespace TextConverter.ConverterBuilders
 {
-    public class HTMLBuilder : ConverterBuilder
+    public class HtmlBuilder : ConverterBuilder
     {
         public override ConverterBuilder AddHeader(HeaderLevels level, string header)
         {
