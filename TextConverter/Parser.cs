@@ -17,8 +17,7 @@ namespace TextConverter
             foreach (string block in text.Split(new[] { "\n\r\n" }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var innerList = block.Split('\n');
-                var keyWord = innerList[0].Split(' ')[0];
-
+                var keyWord = innerList[0].Trim().Split(' ')[0];
                 switch (keyWord)
                 {
                     case KeyWords.Text:
@@ -46,7 +45,6 @@ namespace TextConverter
                         break;
                 }
             }
-
 
             return builder.ToString();
         }
