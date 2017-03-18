@@ -34,8 +34,7 @@ namespace TextConverter.ConverterBuilders
         /// <summary>
         /// Преобразует данные билдера в строку
         /// </summary>
-        /// <remarks>Не переопределять в наследниках!</remarks>
-        public override string ToString() => result?.ToString() ?? "";
+        public sealed override string ToString() => result?.ToString() ?? "";
 
         /// <summary>
         /// Получает расширение файла, связанного с конкретным билдером.
