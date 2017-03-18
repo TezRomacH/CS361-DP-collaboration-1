@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextConverter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Text converter. Tezikov Roman and Popova Tatiana"
+        SizeToContent="WidthAndHeight"
+        MinHeight="300"
+        MinWidth="570"
+        HorizontalContentAlignment="Center" FontSize="14" Width="570" Height="300">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="2" FontSize="14">
+            <MenuItem Margin="5" Name="openMenuItem" Header="Open" Click="openMenuItem_OnClick"/>
+            <MenuItem Margin="5" Name="fileMenuItem" Header="File">
+                <MenuItem Name="saveMenuItem" Header="Save" Click="saveMenuItem_OnClick"/>
+                <MenuItem Name="saveAsMenuItem" Header="Save as" Click="saveAsMenuItem_OnClick"/>
+            </MenuItem>
+        </Menu>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="0" CanContentScroll="True"
+                      VerticalScrollBarVisibility="Visible"
+                      HorizontalScrollBarVisibility="Auto">
+            <TextBox Margin="5" Name="mainTextBox" Width="Auto"
+                     AcceptsReturn="True"/>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1" CanContentScroll="True"
+                      VerticalScrollBarVisibility="Visible"
+                      HorizontalScrollBarVisibility="Auto">
+            <TextBox Margin="5" Name="resultTextBox" Width="Auto" IsReadOnly="True"
+                     AcceptsReturn="True"/>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center">
+            <Button Name="Button1" Margin="4" Padding="12,3,12,3" Content="Parser"/>
+        </StackPanel>
     </Grid>
 </Window>

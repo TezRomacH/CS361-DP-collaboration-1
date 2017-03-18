@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,21 @@ namespace TextConverter
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void openMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void saveMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void saveAsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
