@@ -8,8 +8,8 @@
         Title="Text converter. Tezikov Roman and Popova Tatiana"
         SizeToContent="WidthAndHeight"
         MinHeight="300"
-        MinWidth="570"
-        HorizontalContentAlignment="Center" FontSize="14" Width="570" Height="300">
+        MinWidth="640"
+        HorizontalContentAlignment="Center" FontSize="14" Width="640" Height="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,8 +23,8 @@
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2" FontSize="14">
             <MenuItem Margin="3" Name="openMenuItem" Header="Open" Click="openMenuItem_OnClick"/>
-            <MenuItem Margin="3" Name="saveMenuItem" Header="Save" Click="saveMenuItem_OnClick"/>
-            <MenuItem Margin="3" Name="saveAsMenuItem" Header="Save as" Click="saveMenuItem_OnClick"/>
+            <MenuItem Margin="3" Name="saveMenuItem" Header="Save" Click="saveMenuItem_OnClick" Tag="saveMenu"/>
+            <MenuItem Margin="3" Name="saveAsMenuItem" Header="Save as" Click="saveMenuItem_OnClick" Tag="saveAsMenu"/>
         </Menu>
 
         <ScrollViewer Grid.Row="1" Grid.Column="0" CanContentScroll="True"
@@ -46,8 +46,8 @@
         <UniformGrid Grid.Row="2" Grid.Column="0" Margin="4,4,22,4"
                      HorizontalAlignment="Right"
                      Rows="1" Columns="2">
-            <Button Name="htmlParserButton" Content="Html" Click="parserButton_OnClick" Tag="htmlButton"/>
-            <Button Name="markdownParserButton" Padding="7,2" Content="Markdown" Click="parserButton_OnClick" Tag="markdownButton"/>
+            <Button Name="htmlParserButton" Content="Html" Tag="htmlButton" Click="parserButton_OnClick"/>
+            <Button Name="markdownParserButton" Padding="7,2" Content="Markdown" Tag="markdownButton" Click="parserButton_OnClick"/>
         </UniformGrid>
     </Grid>
 </Window>

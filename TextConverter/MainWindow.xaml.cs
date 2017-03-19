@@ -30,10 +30,21 @@ namespace TextConverter
         private OpenFileDialog openFileDialog;
         private SaveFileDialog saveFileDialog;
 
+        // I don't like this.
+        private List<Button> parserButtons;
+
         public MainWindow()
         {
             InitializeComponent();
             InitializeDialogs();
+
+            parser = new Parser.Parser();
+            builder = new HtmlBuilder();
+
+            parserButtons = new List<Button>
+            {
+                htmlParserButton, markdownParserButton
+            };
         }
 
         private void InitializeDialogs()
@@ -65,7 +76,18 @@ namespace TextConverter
 
         private void saveMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            var menuItem = sender as MenuItem;
+            string tag = menuItem?.Tag.ToString();
 
+            // TODO: should we check a menu item with an another method?
+            if (tag == saveMenuItem?.Tag.ToString())
+            {
+
+            }
+            else if (tag == saveAsMenuItem?.Tag.ToString())
+            {
+
+            }
         }
 
         private void parserButton_OnClick(object sender, RoutedEventArgs e)
@@ -73,14 +95,31 @@ namespace TextConverter
             var button = sender as Button;
             string tag = button?.Tag.ToString();
 
-            // TODO: should we check button with other method?
-            if (tag == htmlParserButton?.Tag.ToString())
+            // TODO: should we check a button with an another method?
+            if (tag == htmlParserButton?.Tag.ToString() && !(builder is HtmlBuilder))
             {
-
+                builder = new HtmlBuilder();
             }
-            else if (tag == markdownParserButton?.Tag.ToString())
+            else if (tag == markdownParserButton?.Tag.ToString() && !(builder is MarkdownBuilder))
             {
+                builder = new MarkdownBuilder();
+            }
 
+            HightlightButton(button, parserButtons);
+        }
+
+        private void HightlightButton(Button buttonToHightlight, IEnumerable<Button> allButtons)
+        {
+            HightlightButton(buttonToHightlight, allButtons,
+                Brushes.Coral, new SolidColorBrush(Color.FromRgb(221, 221, 221)));
+        }
+
+        private void HightlightButton(Button buttonToHightlight, IEnumerable<Button> allButtons,
+            Brush brushToHighlight, Brush defaultBrush)
+        {
+            foreach (var button in allButtons)
+            {
+                button.Background = button == buttonToHightlight ? brushToHighlight : defaultBrush;
             }
         }
 
@@ -89,7 +128,7 @@ namespace TextConverter
             // TODO: syntax highlighting
             // ...
 
-            // Uncomment this when builder's methods are implemented
+            // Uncomment this when all builder's methods are implemented
             //resultTextBox.Text = parser.Parse(builder, (sender as TextBox)?.Text);
         }
     }
