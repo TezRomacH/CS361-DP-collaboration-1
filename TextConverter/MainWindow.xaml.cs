@@ -97,17 +97,24 @@ namespace TextConverter
 
             try
             {
-                if ((string.IsNullOrEmpty(prevFilePath) || tag == saveAsMenuItem?.Tag.ToString()) &&
-                    saveFileDialog.ShowDialog() == true &&
-                    string.Equals(saveFileDialog.FileName, prevFilePath, StringComparison.CurrentCultureIgnoreCase))
+                if (string.IsNullOrEmpty(prevFilePath) || tag == saveAsMenuItem?.Tag.ToString())
                 {
-                    string newFilePath = saveFileDialog.FileName;
-                    var path = System.IO.Path.GetDirectoryName(newFilePath) + "\\($$##$$)"
-                        + System.IO.Path.GetExtension(newFilePath);
+                    if (saveFileDialog.ShowDialog() != true)
+                        return;
+                    if (string.Equals(saveFileDialog.FileName, prevFilePath, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        string newFilePath = saveFileDialog.FileName;
+                        var path = System.IO.Path.GetDirectoryName(newFilePath) + "\\($$##$$)"
+                            + System.IO.Path.GetExtension(newFilePath);
 
-                    File.WriteAllText(path, resultTextBox.Text);
-                    File.Delete(newFilePath);
-                    File.Move(path, newFilePath);
+                        File.WriteAllText(path, resultTextBox.Text);
+                        File.Delete(newFilePath);
+                        File.Move(path, newFilePath);
+                    }
+                    else
+                    {
+                        File.WriteAllText(saveFileDialog.FileName, resultTextBox.Text);
+                    }
                 }
                 else
                 {
