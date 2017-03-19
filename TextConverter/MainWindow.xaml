@@ -27,6 +27,14 @@
             <MenuItem Margin="3" Name="saveAsMenuItem" Header="Save as" Click="saveMenuItem_OnClick" Tag="saveAsMenu"/>
         </Menu>
 
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14" HorizontalAlignment="Right">
+            <MenuItem Margin="3" Name="langMenuItem" Header="Language">
+                <MenuItem Header="English" Click="langMenuItem_OnClick" Tag="en-US"/>
+                <MenuItem Header="Russian" Click="langMenuItem_OnClick" Tag="ru-RU"/>
+            </MenuItem>
+            <MenuItem Margin="3" Name="aboutMenuItem" Header="About" Click="aboutMenuItem_OnClick"/>
+        </Menu>
+
         <ScrollViewer Grid.Row="1" Grid.Column="0" CanContentScroll="True"
                       VerticalScrollBarVisibility="Visible"
                       HorizontalScrollBarVisibility="Auto">

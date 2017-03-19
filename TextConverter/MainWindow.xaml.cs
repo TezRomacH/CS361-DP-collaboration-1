@@ -67,12 +67,15 @@ namespace TextConverter
 
         #endregion
 
+        #region MenuItems OnClick events
+
         private void openMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             if (openFileDialog.ShowDialog() == true)
             {
                 try
                 {
+                    saveFileDialog.FileName = null;
                     mainTextBox.Text = File.ReadAllText(openFileDialog.FileName);
                 }
                 catch (Exception ex)
@@ -99,6 +102,18 @@ namespace TextConverter
 
             }
         }
+
+        private void langMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void aboutMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
 
         private void parserButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -144,5 +159,6 @@ namespace TextConverter
             // Just for tests
             resultTextBox.Text = (sender as TextBox)?.Text;
         }
+
     }
 }
