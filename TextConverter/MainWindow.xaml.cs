@@ -164,12 +164,12 @@ namespace TextConverter
             converterbuilder = newBuilder;
 
             // Horrible!
-            // TODO: Change it to Resourses.GetString("save_filter" + builder.GetExtension());
+            // TODO: Change it to some like `Resourses.GetString("save_filter" + builder.GetExtension());`
             saveFileDialog.Filter = new Dictionary<string, string>
             {
                 [".html"] = "HTML files (*.html)|*.html|Text files (*.txt)|*.txt",
                 [".md"] = "Markdown files (*.md)|*.md|Text files (*.txt)|*.txt"
-            }[builder.GetExtension()];
+            }[converterbuilder.GetExtension()];
 
             saveFileDialog.FileName = null;
         }
