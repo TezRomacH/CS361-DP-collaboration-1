@@ -37,15 +37,10 @@ namespace TextConverter
         {
             InitializeComponent();
             InitializeDialogs();
-
-            parser = new Parser.Parser();
-            builder = new HtmlBuilder();
-
-            parserButtons = new List<Button>
-            {
-                htmlParserButton, markdownParserButton
-            };
+            InitializeConverter();
         }
+
+        #region Initializators
 
         private void InitializeDialogs()
         {
@@ -56,6 +51,21 @@ namespace TextConverter
 
             saveFileDialog = new SaveFileDialog();
         }
+
+        private void InitializeConverter()
+        {
+            parser = new Parser.Parser();
+            builder = new HtmlBuilder();
+
+            parserButtons = new List<Button>
+            {
+                htmlParserButton, markdownParserButton
+            };
+
+            HightlightButton(htmlParserButton, parserButtons);
+        }
+
+        #endregion
 
         private void openMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
@@ -130,6 +140,9 @@ namespace TextConverter
 
             // Uncomment this when all builder's methods are implemented
             //resultTextBox.Text = parser.Parse(builder, (sender as TextBox)?.Text);
+
+            // Just for tests
+            resultTextBox.Text = (sender as TextBox)?.Text;
         }
     }
 }
