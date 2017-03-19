@@ -46,6 +46,7 @@ namespace TextConverter
         {
             openFileDialog = new OpenFileDialog
             {
+                // TODO: get it from resourses
                 Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt"
             };
 
@@ -55,7 +56,7 @@ namespace TextConverter
         private void InitializeConverter()
         {
             parser = new Parser.Parser();
-            builder = new HtmlBuilder();
+            SetBuilder(ref builder, new HtmlBuilder());
 
             parserButtons = new List<Button>
             {
@@ -80,6 +81,7 @@ namespace TextConverter
                 }
                 catch (Exception ex)
                 {
+                    // TODO: get it from resourses
                     MessageBox.Show(this,
                         $"Text converter can't open a file!\n{ex.Message}",
                         "Unexpected error!", MessageBoxButton.OK);
@@ -91,15 +93,32 @@ namespace TextConverter
         {
             var menuItem = sender as MenuItem;
             string tag = menuItem?.Tag.ToString();
+            string prevFilePath = saveFileDialog.FileName;
 
-            // TODO: should we check a menu item with an another method?
-            if (tag == saveMenuItem?.Tag.ToString())
+            try
             {
+                if ((string.IsNullOrEmpty(prevFilePath) || tag == saveAsMenuItem?.Tag.ToString()) &&
+                    saveFileDialog.ShowDialog() == true &&
+                    string.Equals(saveFileDialog.FileName, prevFilePath, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    string newFilePath = saveFileDialog.FileName;
+                    var path = System.IO.Path.GetDirectoryName(newFilePath) + "\\($$##$$)"
+                        + System.IO.Path.GetExtension(newFilePath);
 
+                    File.WriteAllText(path, resultTextBox.Text);
+                    File.Delete(newFilePath);
+                    File.Move(path, newFilePath);
+                }
+                else
+                {
+                    File.WriteAllText(saveFileDialog.FileName, resultTextBox.Text);
+                }
             }
-            else if (tag == saveAsMenuItem?.Tag.ToString())
+            catch (Exception ex)
             {
-
+                MessageBox.Show(this,
+                    $"Text converter can't save a file!\n{ex.Message}",
+                    "Unexpected error!", MessageBoxButton.OK);
             }
         }
 
@@ -120,17 +139,31 @@ namespace TextConverter
             var button = sender as Button;
             string tag = button?.Tag.ToString();
 
-            // TODO: should we check a button with an another method?
             if (tag == htmlParserButton?.Tag.ToString() && !(builder is HtmlBuilder))
             {
-                builder = new HtmlBuilder();
+                SetBuilder(ref builder, new HtmlBuilder());
             }
             else if (tag == markdownParserButton?.Tag.ToString() && !(builder is MarkdownBuilder))
             {
-                builder = new MarkdownBuilder();
+                SetBuilder(ref builder, new MarkdownBuilder());
             }
 
             HightlightButton(button, parserButtons);
+        }
+
+        private void SetBuilder(ref ConverterBuilder converterbuilder, ConverterBuilder newBuilder)
+        {
+            converterbuilder = newBuilder;
+
+            // Horrible!
+            // TODO: Change it to Resourses.GetString("save_filter" + builder.GetExtension());
+            saveFileDialog.Filter = new Dictionary<string, string>
+            {
+                [".html"] = "HTML files (*.html)|*.html|Text files (*.txt)|*.txt",
+                [".md"] = "Markdown files (*.md)|*.md|Text files (*.txt)|*.txt"
+            }[builder.GetExtension()];
+
+            saveFileDialog.FileName = null;
         }
 
         private void HightlightButton(Button buttonToHightlight, IEnumerable<Button> allButtons)
