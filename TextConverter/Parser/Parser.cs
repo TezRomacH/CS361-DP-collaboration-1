@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TextConverter.ConverterBuilders;
 
-namespace TextConverter
+namespace TextConverter.Parser
 {
     public class Parser
     {

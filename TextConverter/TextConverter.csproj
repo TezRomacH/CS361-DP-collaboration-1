@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="ConverterBuilders\ConverterBuilder.cs" />
+    <Compile Include="ConverterBuilders\Helper.cs" />
     <Compile Include="ConverterBuilders\MarkdownBuilder.cs" />
     <Compile Include="ConverterBuilders\HtmlBuilder.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -72,7 +73,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parser.cs" />
+    <Compile Include="Parser\Keywords.cs" />
+    <Compile Include="Parser\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

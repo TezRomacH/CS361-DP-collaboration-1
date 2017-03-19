@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TextConverter
+namespace TextConverter.Parser
 {
     /// <summary>
     /// Ключевые слова для парсера
@@ -19,16 +19,5 @@ namespace TextConverter
 
         public const string OrderedList = "ordlist";
         public const string BulletedList = "bullist";
-    }
-
-
-    /// <summary>
-    /// Уровни заголовков
-    /// </summary>
-    public enum HeaderLevels
-    {
-        Level1 = 1,
-        Level2,
-        Level3
     }
 }
