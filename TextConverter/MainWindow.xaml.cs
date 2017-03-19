@@ -84,7 +84,7 @@ namespace TextConverter
                     // TODO: get it from resourses
                     MessageBox.Show(this,
                         $"Text converter can't open a file!\n{ex.Message}",
-                        "Unexpected error!", MessageBoxButton.OK);
+                        "Unexpected error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -101,6 +101,7 @@ namespace TextConverter
                 {
                     if (saveFileDialog.ShowDialog() != true)
                         return;
+
                     if (string.Equals(saveFileDialog.FileName, prevFilePath, StringComparison.CurrentCultureIgnoreCase))
                     {
                         string newFilePath = saveFileDialog.FileName;
@@ -136,7 +137,7 @@ namespace TextConverter
 
         private void aboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show(this, "Designed by Tezikov Roman and Popova Tatiana", "About", MessageBoxButton.OK);
         }
 
         #endregion

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextConverter"
         mc:Ignorable="d"
-        Title="Text converter. Tezikov Roman and Popova Tatiana"
+        Title="Text converter"
         SizeToContent="WidthAndHeight"
         MinHeight="300"
         MinWidth="640"
