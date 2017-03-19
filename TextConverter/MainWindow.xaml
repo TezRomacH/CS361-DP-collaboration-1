@@ -22,18 +22,16 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2" FontSize="14">
-            <MenuItem Margin="5" Name="openMenuItem" Header="Open" Click="openMenuItem_OnClick"/>
-            <MenuItem Margin="5" Name="fileMenuItem" Header="File">
-                <MenuItem Name="saveMenuItem" Header="Save" Click="saveMenuItem_OnClick"/>
-                <MenuItem Name="saveAsMenuItem" Header="Save as" Click="saveAsMenuItem_OnClick"/>
-            </MenuItem>
+            <MenuItem Margin="3" Name="openMenuItem" Header="Open" Click="openMenuItem_OnClick"/>
+            <MenuItem Margin="3" Name="saveMenuItem" Header="Save" Click="saveMenuItem_OnClick"/>
+            <MenuItem Margin="3" Name="saveAsMenuItem" Header="Save as" Click="saveMenuItem_OnClick"/>
         </Menu>
 
         <ScrollViewer Grid.Row="1" Grid.Column="0" CanContentScroll="True"
                       VerticalScrollBarVisibility="Visible"
                       HorizontalScrollBarVisibility="Auto">
             <TextBox Margin="5" Name="mainTextBox" Width="Auto"
-                     AcceptsReturn="True"/>
+                     AcceptsReturn="True" TextChanged="mainTextBox_OnTextChanged"/>
         </ScrollViewer>
 
         <ScrollViewer Grid.Row="1" Grid.Column="1" CanContentScroll="True"
@@ -43,8 +41,13 @@
                      AcceptsReturn="True"/>
         </ScrollViewer>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center">
-            <Button Name="Button1" Margin="4" Padding="12,3,12,3" Content="Parser"/>
-        </StackPanel>
+        <Label Grid.Row="2" Grid.Column="0" Margin="4">Convert to:</Label>
+
+        <UniformGrid Grid.Row="2" Grid.Column="0" Margin="4,4,22,4"
+                     HorizontalAlignment="Right"
+                     Rows="1" Columns="2">
+            <Button Name="htmlParserButton" Content="Html" Click="parserButton_OnClick" Tag="htmlButton"/>
+            <Button Name="markdownParserButton" Padding="7,2" Content="Markdown" Click="parserButton_OnClick" Tag="markdownButton"/>
+        </UniformGrid>
     </Grid>
 </Window>
