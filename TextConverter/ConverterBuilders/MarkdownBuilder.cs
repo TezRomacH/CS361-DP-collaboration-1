@@ -6,8 +6,6 @@ namespace TextConverter.ConverterBuilders
     public class MarkdownBuilder : ConverterBuilder
     {
         private Dictionary<HeaderLevels, string> headers;
-        private const string bulledListItems = "* ";
-        private const string orderedListItems = "1. ";
 
         public MarkdownBuilder()
         {
@@ -20,7 +18,8 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddHeader(string header, HeaderLevels level)
         {
-            result.Append(headers[level] + header + headers[level] + Environment.NewLine);
+            result.AppendFormat(headers[level] + header + headers[level]);
+            AddNewLine();
             return this;
         }
 
@@ -28,7 +27,7 @@ namespace TextConverter.ConverterBuilders
         {
             foreach(var item in args)
             {
-                result.Append(orderedListItems + item);
+                result.AppendFormat($"1. {item}");
                 AddNewLine();
             }
             return this;
@@ -38,7 +37,7 @@ namespace TextConverter.ConverterBuilders
         {
             foreach (var item in args)
             {
-                result.Append(bulledListItems + item);
+                result.AppendFormat($"* {item}");
                 AddNewLine();
             }
             
