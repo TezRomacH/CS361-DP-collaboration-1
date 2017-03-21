@@ -5,20 +5,29 @@ namespace TextConverter.ConverterBuilders
 {
     public class MarkdownBuilder : ConverterBuilder
     {
-        private Dictionary<HeaderLevels, string> headers;
-
+        
         public MarkdownBuilder()
         {
-            headers = new Dictionary<HeaderLevels, string>();
-            headers.Add(HeaderLevels.Level1, "#");
-            headers.Add(HeaderLevels.Level2, "##");
-            headers.Add(HeaderLevels.Level3, "###");
             result = new System.Text.StringBuilder();
         }
 
         public override ConverterBuilder AddHeader(string header, HeaderLevels level)
         {
-            result.AppendFormat(headers[level] + header + headers[level]);
+            switch (level)
+            {
+                case HeaderLevels.Level1:
+                    result.AppendFormat($"# {header} #");
+                    break;
+
+                case HeaderLevels.Level2:
+                    result.AppendFormat($"## {header} ##");
+                    break;
+
+                case HeaderLevels.Level3:
+                    result.AppendFormat($"### {header} ###");
+                    break;
+            }
+
             AddNewLine();
             return this;
         }
