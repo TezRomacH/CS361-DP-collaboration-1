@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TextConverter.ConverterBuilders
 {
     public abstract class ConverterBuilder
@@ -30,6 +31,15 @@ namespace TextConverter.ConverterBuilders
         /// Добавляет маркированный список
         /// </summary>
         public abstract ConverterBuilder AddBulletedList(IEnumerable<string> args);
+
+        /// <summary>
+        /// Добавляет переход на новую строку
+        /// </summary>
+        public ConverterBuilder AddNewLine()
+        {
+            result.Append(Environment.NewLine);
+            return this;
+        }
 
         /// <summary>
         /// Преобразует данные билдера в строку
