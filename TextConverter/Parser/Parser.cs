@@ -18,6 +18,7 @@ namespace TextConverter.Parser
             {
                 var innerList = block.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
                 var keyWord = innerList[0].Trim().Split(' ')[0];
+                var isCorrectKeyword = true;
 
                 int substringIndex = Math.Min(keyWord.Length + 1, block.Length);
                 switch (keyWord)
@@ -44,8 +45,11 @@ namespace TextConverter.Parser
                         break;
 
                     default:
+                        isCorrectKeyword = false;
                         break;
                 }
+                if (isCorrectKeyword)
+                    builder.AddNewLine();
             }
 
             return builder.ToString();

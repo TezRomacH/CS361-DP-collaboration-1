@@ -195,10 +195,10 @@ namespace TextConverter
             // ...
 
             // Uncomment this when all builder's methods are implemented
-            //resultTextBox.Text = parser.Parse(builder, (sender as TextBox)?.Text);
+            resultTextBox.Text = parser.Parse(builder.Clear(), (sender as TextBox)?.Text);
 
             // Just for tests
-            resultTextBox.Text = (sender as TextBox)?.Text;
+            //resultTextBox.Text = (sender as TextBox)?.Text;
         }
 
     }
