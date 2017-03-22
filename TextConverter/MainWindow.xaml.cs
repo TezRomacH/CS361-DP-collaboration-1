@@ -172,6 +172,7 @@ namespace TextConverter
             }[converterbuilder.GetExtension()];
 
             saveFileDialog.FileName = null;
+            resultTextBox.Text = parser.Parse(builder.Clear(), mainTextBox?.Text);
         }
 
         private void HightlightButton(Button buttonToHightlight, IEnumerable<Button> allButtons)
