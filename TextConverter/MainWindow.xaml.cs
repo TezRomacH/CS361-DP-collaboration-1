@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using TextConverter.ConverterBuilders;
+using TextConverter.Parser;
 
 namespace TextConverter
 {
@@ -38,6 +39,8 @@ namespace TextConverter
             InitializeComponent();
             InitializeDialogs();
             InitializeConverter();
+
+            //builder.Parse("adada");
         }
 
         #region Initializators
@@ -172,7 +175,8 @@ namespace TextConverter
             }[converterbuilder.GetExtension()];
 
             saveFileDialog.FileName = null;
-            resultTextBox.Text = parser.Parse(builder.Clear(), mainTextBox?.Text);
+            UpdateConvertedText();
+            
         }
 
         private void HightlightButton(Button buttonToHightlight, IEnumerable<Button> allButtons)
@@ -196,10 +200,13 @@ namespace TextConverter
             // ...
 
             // Uncomment this when all builder's methods are implemented
-            resultTextBox.Text = parser.Parse(builder.Clear(), (sender as TextBox)?.Text);
+            UpdateConvertedText();
+            
+        }
 
-            // Just for tests
-            //resultTextBox.Text = (sender as TextBox)?.Text;
+        private void UpdateConvertedText()
+        {
+            resultTextBox.Text = parser.Convert(builder.Clear(), mainTextBox?.Text);
         }
 
     }

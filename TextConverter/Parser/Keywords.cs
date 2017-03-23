@@ -19,5 +19,13 @@ namespace TextConverter.Parser
 
         public const string OrderedList = "ordlist";
         public const string BulletedList = "bullist";
+
+        public static bool IsKeyword(string word)
+        {
+            List<string> keywords = new List<string>(){ Text, Header1, Header2, Header3, OrderedList, BulletedList };
+            return keywords.Contains(word);
+        }
+
+       
     }
 }
