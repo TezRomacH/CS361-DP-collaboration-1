@@ -27,6 +27,8 @@ namespace TextConverter.Parser
                 int substringIndex = Math.Min(keyWord.Length + 1, block.Length);
                 if (KeyWords.IsKeyword(keyWord))
                     blocks.Add(new Tuple<string, string>(keyWord, block.Substring(substringIndex)));
+                else
+                    blocks.Add(new Tuple<string, string>(null, block));
            
             }
 
