@@ -71,8 +71,7 @@ namespace TextConverter
 
         private void openMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            openFileDialog.Filter = Properties.Resources.ResourceManager.GetString(ResourceKeys.OpenFileFilter, 
-                Thread.CurrentThread.CurrentUICulture);
+            openFileDialog.Filter = Properties.Resources.ResourceManager.GetString(ResourceKeys.OpenFileFilter);
             
             if (openFileDialog.ShowDialog() == true)
             {
@@ -95,7 +94,7 @@ namespace TextConverter
             var menuItem = sender as MenuItem;
             string tag = menuItem?.Tag.ToString();
             string prevFilePath = saveFileDialog.FileName;
-            saveFileDialog.Filter = Properties.Resources.ResourceManager.GetString(ResourceKeys.SaveFileFilter + builder.GetExtension(), Thread.CurrentThread.CurrentUICulture);
+            saveFileDialog.Filter = Properties.Resources.ResourceManager.GetString(ResourceKeys.SaveFileFilter + builder.GetExtension());
             try
             {
                 if (string.IsNullOrEmpty(prevFilePath) || tag == saveAsMenuItem?.Tag.ToString())
@@ -136,12 +135,14 @@ namespace TextConverter
             var resourceManager = Properties.Resources.ResourceManager;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(((MenuItem)sender).Tag.ToString());
 
-            openMenuItem.Header = resourceManager.GetString(ResourceKeys.Open, Thread.CurrentThread.CurrentUICulture);
-            saveMenuItem.Header = resourceManager.GetString(ResourceKeys.Save, Thread.CurrentThread.CurrentUICulture);
-            saveAsMenuItem.Header = resourceManager.GetString(ResourceKeys.SaveAs, Thread.CurrentThread.CurrentUICulture);
-            labelConvert.Content = resourceManager.GetString(ResourceKeys.Convert, Thread.CurrentThread.CurrentUICulture);
+            openMenuItem.Header = resourceManager.GetString(ResourceKeys.Open);
+            saveMenuItem.Header = resourceManager.GetString(ResourceKeys.Save);
+            saveAsMenuItem.Header = resourceManager.GetString(ResourceKeys.SaveAs);
+            labelConvert.Content = resourceManager.GetString(ResourceKeys.Convert);
             aboutMenuItem.Header = resourceManager.GetString(ResourceKeys.About);
-            //TODO update dialog's filter
+            langMenuItem.Header = resourceManager.GetString(ResourceKeys.Languages);
+            langEng.Header = resourceManager.GetString(ResourceKeys.LanguageEng);
+            langRus.Header = resourceManager.GetString(ResourceKeys.LanguageRus);
 
         }
 
