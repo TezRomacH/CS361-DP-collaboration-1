@@ -42,6 +42,7 @@ namespace TextConverter
             InitializeComponent();
             InitializeDialogs();
             InitializeConverter();
+            Localize();
         }
 
         #region Initializators
@@ -132,8 +133,15 @@ namespace TextConverter
 
         private void langMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var resourceManager = Properties.Resources.ResourceManager;
+            
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(((MenuItem)sender).Tag.ToString());
+            Localize();
+
+        }
+
+        private void Localize()
+        {
+            var resourceManager = Properties.Resources.ResourceManager;
 
             openMenuItem.Header = resourceManager.GetString(ResourceKeys.Open);
             saveMenuItem.Header = resourceManager.GetString(ResourceKeys.Save);
@@ -143,10 +151,7 @@ namespace TextConverter
             langMenuItem.Header = resourceManager.GetString(ResourceKeys.Languages);
             langEng.Header = resourceManager.GetString(ResourceKeys.LanguageEng);
             langRus.Header = resourceManager.GetString(ResourceKeys.LanguageRus);
-
         }
-
-        
 
         private void aboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {

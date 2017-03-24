@@ -77,7 +77,7 @@ namespace TextConverter.Parser
                         break;
                 }
                 if (isCorrectKeyword)
-                    builder.AddNewLine();
+                    builder.AddNewLine().AddNewLine();
             }
 
             return builder.ToString();

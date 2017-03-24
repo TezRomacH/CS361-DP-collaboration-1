@@ -27,14 +27,14 @@ namespace TextConverter.ConverterBuilders
                     result.AppendFormat($"### {header} ###");
                     break;
             }
-
-            AddNewLine();
             return this;
         }
 
         public override ConverterBuilder AddOrderedList(IEnumerable<string> args)
         {
-            foreach(var item in args)
+            
+            //TODO exclude last new line
+            foreach (var item in args)
             {
                 result.AppendFormat($"1. {item}");
                 AddNewLine();
@@ -44,6 +44,7 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddBulletedList(IEnumerable<string> args)
         {
+            //TODO exclude last new line
             foreach (var item in args)
             {
                 result.AppendFormat($"* {item}");
@@ -55,7 +56,7 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddText(string text)
         {
-            result.Append(text + Environment.NewLine);
+            result.Append(text);
             return this;
         }
         

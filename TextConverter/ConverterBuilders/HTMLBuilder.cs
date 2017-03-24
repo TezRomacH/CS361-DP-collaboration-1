@@ -26,7 +26,6 @@ namespace TextConverter.ConverterBuilders
                     result.AppendFormat($"<h3>{header}</h3>");
                     break;
             }
-            AddNewLine();
             return this;
         }
 
@@ -34,14 +33,14 @@ namespace TextConverter.ConverterBuilders
         {
             result.Append("<ol>" + Environment.NewLine);
             AddListItems(args);
-            result.Append("</ol>" + Environment.NewLine);
+            result.Append("</ol>");
             return this;
         }
         public override ConverterBuilder AddBulletedList(IEnumerable<string> args)
         {
             result.Append("<ul>" + Environment.NewLine);
             AddListItems(args);
-            result.Append("</ul>" + Environment.NewLine);
+            result.Append("</ul>");
             return this;
         }
 
@@ -58,7 +57,6 @@ namespace TextConverter.ConverterBuilders
         public override ConverterBuilder AddText(string text)
         {
             result.AppendFormat($"<p>{text}</p>");
-            AddNewLine();
             return this;
         }
 
