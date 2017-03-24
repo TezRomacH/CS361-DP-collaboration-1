@@ -17,6 +17,9 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using TextConverter.ConverterBuilders;
 using TextConverter.Parser;
+using System.Threading;
+using System.Resources;
+
 
 namespace TextConverter
 {
@@ -39,20 +42,13 @@ namespace TextConverter
             InitializeComponent();
             InitializeDialogs();
             InitializeConverter();
-
-            //builder.Parse("adada");
         }
 
         #region Initializators
 
         private void InitializeDialogs()
         {
-            openFileDialog = new OpenFileDialog
-            {
-                // TODO: get it from resourses
-                Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt"
-            };
-
+            openFileDialog = new OpenFileDialog();
             saveFileDialog = new SaveFileDialog();
         }
 
@@ -75,6 +71,9 @@ namespace TextConverter
 
         private void openMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            openFileDialog.Filter = Properties.Resources.ResourceManager.GetString(ResourceKeys.OpenFileFilter, 
+                Thread.CurrentThread.CurrentUICulture);
+            
             if (openFileDialog.ShowDialog() == true)
             {
                 try
@@ -84,10 +83,9 @@ namespace TextConverter
                 }
                 catch (Exception ex)
                 {
-                    // TODO: get it from resourses
                     MessageBox.Show(this,
-                        $"Text converter can't open a file!\n{ex.Message}",
-                        "Unexpected error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        $"{Properties.Resources.error_message_cant_open}\n{ex.Message}",
+                        Properties.Resources.error_title, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -97,7 +95,7 @@ namespace TextConverter
             var menuItem = sender as MenuItem;
             string tag = menuItem?.Tag.ToString();
             string prevFilePath = saveFileDialog.FileName;
-
+            saveFileDialog.Filter = Properties.Resources.ResourceManager.GetString(ResourceKeys.SaveFileFilter + builder.GetExtension(), Thread.CurrentThread.CurrentUICulture);
             try
             {
                 if (string.IsNullOrEmpty(prevFilePath) || tag == saveAsMenuItem?.Tag.ToString())
@@ -128,19 +126,30 @@ namespace TextConverter
             catch (Exception ex)
             {
                 MessageBox.Show(this,
-                    $"Text converter can't save a file!\n{ex.Message}",
-                    "Unexpected error!", MessageBoxButton.OK);
+                    $"{Properties.Resources.error_message_cant_open}\n{ex.Message}",
+                    Properties.Resources.error_title, MessageBoxButton.OK);
             }
         }
 
         private void langMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            var resourceManager = Properties.Resources.ResourceManager;
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(((MenuItem)sender).Tag.ToString());
+
+            openMenuItem.Header = resourceManager.GetString(ResourceKeys.Open, Thread.CurrentThread.CurrentUICulture);
+            saveMenuItem.Header = resourceManager.GetString(ResourceKeys.Save, Thread.CurrentThread.CurrentUICulture);
+            saveAsMenuItem.Header = resourceManager.GetString(ResourceKeys.SaveAs, Thread.CurrentThread.CurrentUICulture);
+            labelConvert.Content = resourceManager.GetString(ResourceKeys.Convert, Thread.CurrentThread.CurrentUICulture);
+            aboutMenuItem.Header = resourceManager.GetString(ResourceKeys.About);
+            //TODO update dialog's filter
 
         }
 
+        
+
         private void aboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(this, "Designed by Tezikov Roman and Popova Tatiana", "About", MessageBoxButton.OK);
+            MessageBox.Show(this, Properties.Resources.about_message, Properties.Resources.about, MessageBoxButton.OK);
         }
 
         #endregion
@@ -160,24 +169,16 @@ namespace TextConverter
             }
 
             HightlightButton(button, parserButtons);
+            UpdateConvertedText();
         }
 
         private void SetBuilder(ref ConverterBuilder converterbuilder, ConverterBuilder newBuilder)
         {
             converterbuilder = newBuilder;
-
-            // Horrible!
-            // TODO: Change it to some like `Resourses.GetString("save_filter" + builder.GetExtension());`
-            saveFileDialog.Filter = new Dictionary<string, string>
-            {
-                [".html"] = "HTML files (*.html)|*.html|Text files (*.txt)|*.txt",
-                [".md"] = "Markdown files (*.md)|*.md|Text files (*.txt)|*.txt"
-            }[converterbuilder.GetExtension()];
-
-            saveFileDialog.FileName = null;
             UpdateConvertedText();
             
         }
+
 
         private void HightlightButton(Button buttonToHightlight, IEnumerable<Button> allButtons)
         {
@@ -196,10 +197,6 @@ namespace TextConverter
 
         private void mainTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            // TODO: syntax highlighting
-            // ...
-
-            // Uncomment this when all builder's methods are implemented
             UpdateConvertedText();
             
         }

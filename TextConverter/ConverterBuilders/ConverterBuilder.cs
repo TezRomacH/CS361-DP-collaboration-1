@@ -49,7 +49,7 @@ namespace TextConverter.ConverterBuilders
         /// <summary>
         /// Получает расширение файла, связанного с конкретным билдером.
         /// </summary>
-        public virtual string GetExtension() => ".txt";
+        public virtual string GetExtension() => "txt";
 
         /// <summary>
         /// Удаляет все символы из текущего экземпляра ConverterBuilder

@@ -60,6 +60,6 @@ namespace TextConverter.ConverterBuilders
         }
         
 
-        public override string GetExtension() => ".md";
+        public override string GetExtension() => "md";
     }
 }

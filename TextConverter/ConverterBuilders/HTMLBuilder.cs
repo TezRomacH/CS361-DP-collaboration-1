@@ -62,6 +62,6 @@ namespace TextConverter.ConverterBuilders
             return this;
         }
 
-        public override string GetExtension() => ".html";
+        public override string GetExtension() => "html";
     }
 }

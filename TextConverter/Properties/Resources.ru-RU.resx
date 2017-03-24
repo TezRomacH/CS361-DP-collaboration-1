@@ -118,45 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about" xml:space="preserve">
-    <value>About</value>
+    <value>О нас</value>
   </data>
   <data name="about_message" xml:space="preserve">
-    <value>Designed by Tezikov Roman and Popova Tatiana</value>
+    <value>Разработали: Тезиков Роман и Татьяна Попова</value>
   </data>
   <data name="convert" xml:space="preserve">
-    <value>Convert to</value>
+    <value>Конвертировать в</value>
   </data>
   <data name="error_message_cant_open" xml:space="preserve">
-    <value>Text converter can't open a file!</value>
+    <value>Невозможно открыть файл</value>
   </data>
   <data name="error_title" xml:space="preserve">
-    <value>Unexpected error!</value>
+    <value>Ошибка</value>
   </data>
   <data name="languages" xml:space="preserve">
-    <value>Languages</value>
+    <value>Язык</value>
   </data>
   <data name="lang_eng" xml:space="preserve">
-    <value>English</value>
+    <value>Английский</value>
   </data>
   <data name="lang_rus" xml:space="preserve">
-    <value>Russian</value>
+    <value>Русский</value>
   </data>
   <data name="open" xml:space="preserve">
-    <value>Open</value>
+    <value>Открыть</value>
   </data>
   <data name="open_file_filter" xml:space="preserve">
-    <value>All files (*.*)|*.*|Text files (*.txt)|*.txt</value>
+    <value>Все файлы (*.*)|*.*|Текстовые файлы (*.txt)|*.txt</value>
   </data>
   <data name="save" xml:space="preserve">
-    <value>Save</value>
+    <value>Сохранить</value>
   </data>
   <data name="save_as" xml:space="preserve">
-    <value>Save as</value>
+    <value>Сохранить как</value>
   </data>
   <data name="save_file_filter_html" xml:space="preserve">
-    <value>HTML files (*.html)|*.html|Text files (*.txt)|*.txt</value>
+    <value>HTML файлы (*.html)|*.html|Текстовые файлы (*.txt)|*.txt</value>
   </data>
   <data name="save_file_filter_md" xml:space="preserve">
-    <value>Markdown files (*.md)|*.md|Text files (*.txt)|*.txt</value>
+    <value>Markdown файлы (*.md)|*.md|Текстовые файлы (*.txt)|*.txt</value>
   </data>
 </root>
