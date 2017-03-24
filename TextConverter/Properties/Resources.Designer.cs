@@ -70,7 +70,7 @@ namespace TextConverter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Designed by Tezikov Roman and Popova Tatiana.
+        ///   Looks up a localized string similar to Designed by Roman Tezikov and Tatiana Popova.
         /// </summary>
         internal static string about_message {
             get {
