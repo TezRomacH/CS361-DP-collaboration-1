@@ -12,6 +12,7 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddHeader(string header, HeaderLevels level)
         {
+            CheckAddNewLine();
             switch (level)
             {
                 case HeaderLevels.Level1:
@@ -31,6 +32,7 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddOrderedList(IEnumerable<string> args)
         {
+            CheckAddNewLine();
             result.Append("<ol>" + Environment.NewLine);
             AddListItems(args);
             result.Append("</ol>");
@@ -38,6 +40,7 @@ namespace TextConverter.ConverterBuilders
         }
         public override ConverterBuilder AddBulletedList(IEnumerable<string> args)
         {
+            CheckAddNewLine();
             result.Append("<ul>" + Environment.NewLine);
             AddListItems(args);
             result.Append("</ul>");
@@ -56,6 +59,7 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddText(string text)
         {
+            CheckAddNewLine();
             result.AppendFormat($"<p>{text}</p>");
             return this;
         }

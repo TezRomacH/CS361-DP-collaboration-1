@@ -14,6 +14,7 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddHeader(string header, HeaderLevels level)
         {
+            CheckAddNewLine();
             switch (level)
             {
                 case HeaderLevels.Level1:
@@ -36,6 +37,7 @@ namespace TextConverter.ConverterBuilders
             if (args == null)
                 return this;
 
+            CheckAddNewLine();
             // TODO: should we use only Take/Skip/Count methods of IEnumerable?
             var items = args as IList<string> ?? args.ToList();
             int i = 0;
@@ -53,6 +55,7 @@ namespace TextConverter.ConverterBuilders
             if (args == null)
                 return this;
 
+            CheckAddNewLine();
             // TODO: should we use only Take/Skip/Count methods of IEnumerable?
             var items = args as IList<string> ?? args.ToList();
             int i = 0;
@@ -67,10 +70,10 @@ namespace TextConverter.ConverterBuilders
 
         public override ConverterBuilder AddText(string text)
         {
+            CheckAddNewLine();
             result.Append(text);
             return this;
         }
-
 
         public override string GetExtension() => "md";
     }

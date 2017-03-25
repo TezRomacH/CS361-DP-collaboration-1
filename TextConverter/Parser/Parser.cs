@@ -22,9 +22,13 @@ namespace TextConverter.Parser
             foreach (string block in text.Split(new[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var innerList = block.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-                var keyWord = innerList[0].Trim().Split(' ')[0];
+                string firstString = innerList[0].Trim();
+                var keyWord = firstString.Split(' ')[0];
 
-                int substringIndex = Math.Min(keyWord.Length + 1, block.Length);
+                int  substringIndex = KeyWords.IsArrayKeyword(keyWord) && firstString == keyWord ?
+                    innerList[0].Length :
+                    Math.Min(keyWord.Length + 1, block.Length);
+
                 if (KeyWords.IsKeyword(keyWord))
                     blocks.Add(new Tuple<string, string>(keyWord, block.Substring(substringIndex)));
                 else
@@ -77,7 +81,7 @@ namespace TextConverter.Parser
                         break;
                 }
                 if (isCorrectKeyword)
-                    builder.AddNewLine().AddNewLine();
+                    builder.AddNewLine();
             }
 
             return builder.ToString();

@@ -26,10 +26,10 @@ namespace TextConverter.UnitTests
 
             builder.AddOrderedList(new[] { "1." }).AddBulletedList(new[] { "13" });
             Assert.That(builder, Is.InstanceOf(typeof(MarkdownBuilder)));
-            Assert.That(builder.ToString(), Is.EqualTo("1. 1.*. 13"));
+            Assert.That(builder.ToString(), Is.EqualTo("1. 1.\r\n*. 13"));
 
             builder.Clear().AddOrderedList(new[] { "1." }).AddNewLine().AddBulletedList(new[] { "13" });
-            Assert.That(builder.ToString(), Is.EqualTo("1. 1.\r\n*. 13"));
+            Assert.That(builder.ToString(), Is.EqualTo("1. 1.\r\n\r\n*. 13"));
         }
     }
 }

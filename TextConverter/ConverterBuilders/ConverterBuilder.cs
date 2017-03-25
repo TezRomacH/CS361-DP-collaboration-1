@@ -57,8 +57,13 @@ namespace TextConverter.ConverterBuilders
         public ConverterBuilder Clear()
         {
             result?.Clear();
-
             return this;
+        }
+
+        protected void CheckAddNewLine()
+        {
+            if (result.ToString() != "")
+                result?.Append(Environment.NewLine);
         }
     }
 }
