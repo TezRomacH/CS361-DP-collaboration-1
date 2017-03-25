@@ -159,4 +159,7 @@
   <data name="save_file_filter_md" xml:space="preserve">
     <value>Markdown files (*.md)|*.md|Text files (*.txt)|*.txt</value>
   </data>
+  <data name="error_message_cant_save" xml:space="preserve">
+    <value>Text converter can't save a file!</value>
+  </data>
 </root>

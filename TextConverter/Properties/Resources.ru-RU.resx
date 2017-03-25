@@ -159,4 +159,7 @@
   <data name="save_file_filter_md" xml:space="preserve">
     <value>Markdown файлы (*.md)|*.md|Текстовые файлы (*.txt)|*.txt</value>
   </data>
+  <data name="error_message_cant_save" xml:space="preserve">
+    <value>Невозможно сохранить файл</value>
+  </data>
 </root>

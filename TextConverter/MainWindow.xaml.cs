@@ -126,7 +126,7 @@ namespace TextConverter
             catch (Exception ex)
             {
                 MessageBox.Show(this,
-                    $"{Properties.Resources.error_message_cant_open}\n{ex.Message}",
+                    $"{Properties.Resources.error_message_cant_save}\n{ex.Message}",
                     Properties.Resources.error_title, MessageBoxButton.OK);
             }
         }
@@ -182,7 +182,6 @@ namespace TextConverter
         {
             converterbuilder = newBuilder;
             UpdateConvertedText();
-            
         }
 
 
@@ -204,7 +203,6 @@ namespace TextConverter
         private void mainTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateConvertedText();
-            
         }
 
         private void UpdateConvertedText()

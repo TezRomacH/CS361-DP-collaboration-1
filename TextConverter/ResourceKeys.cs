@@ -14,6 +14,7 @@ namespace TextConverter
         public const string AboutMessage = "about_message";
         public const string Convert = "convert";
         public const string ErrorMessageCantOpen = "error_message_cant_open";
+        public const string ErrorMessageCantSave = "error_message_cant_save";
         public const string ErrorTitle = "error_title";
         public const string LanguageEng = "lang_eng";
         public const string LanguageRus = "lang_rus";
