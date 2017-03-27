@@ -61,7 +61,7 @@ namespace TextConverter.ConverterBuilders
             int i = 0;
             foreach (var item in items)
             {
-                result.AppendFormat($"*. {item}");
+                result.AppendFormat($"* {item}");
                 if (++i != items.Count)
                     AddNewLine();
             }
