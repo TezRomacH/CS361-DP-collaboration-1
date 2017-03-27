@@ -6,6 +6,8 @@ Convert text from the **very special** format to common special formats such as:
 * HTML
 * Markdown
 
+**Supported languages:** English, Russian
+
 ![screenshot](https://github.com/TezRomacH/CS361-DP-collaboration-1/blob/master/TextConverter_screenshot.png)
 
 
@@ -97,5 +99,6 @@ Roman Tezikov:
 Tatiana Popova:
 * implement HtmlBuilder, MarkdownBuilder
 * re-think Parser design, separate converting and parsing
-* localize application. Supported languages: English, Russian 
+* localize application
 * write unit tests for Parser
+* write the readme
