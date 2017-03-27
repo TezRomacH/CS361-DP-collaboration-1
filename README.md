@@ -1,9 +1,13 @@
 # Documentation
 
 Text Converter for Design Patterns course.
+
 Convert text from the **very special** format to common special formats such as:
 * HTML
 * Markdown
+
+![screenshot](https://github.com/TezRomacH/CS361-DP-collaboration-1/blob/master/TextConverter_screenshot.png)
+
 
 **The very special format of source text.** Text consists of paragraph splitted with one or more new line. Each paragrah starts with keyword and one space, and the rest of the paragraph is the text.
 Keywords here:
