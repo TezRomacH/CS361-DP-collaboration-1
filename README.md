@@ -76,13 +76,14 @@ Bulleted list:
 ![UMl Diagram](https://github.com/TezRomacH/CS361-DP-collaboration-1/blob/master/uml.png)
 
 # Design Patterns
+
 Builder pattern.
 
 Builder separates the construction of a complex object from its representiong so that the same construction process can create different representations
 
-Abstract interface: ConverterBulder
+*Abstract interface:* ConverterBulder
 
-Concrete implementations: HtmlBuilder, MarkdownBuilder
+*Concrete implementations:* HtmlBuilder, MarkdownBuilder
 
 The Builder pattern is the best choice between creational patterns here. We have an abstraction such as markup language. It consists of the "parts" - headers, plain text, lists. So we define an interface for any markup language and implement builders for concrete languages.
 
