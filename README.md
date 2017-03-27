@@ -42,12 +42,40 @@ item 2.
 h1 The end!
 ```
 
+Converted to markdown:
+
+```md
+# Header 1 #
+
+Hello, world!
+
+Attention!
+The numered list:
+
+1. item 1;
+1. item 2;
+1. item 3.
+
+## Header 2 ##
+
+Bulleted list:
+
+* item 1;
+* item 2.
+
+# The end! #
+```
+
+# UML diagram
+
 ![UMl Diagram](https://github.com/TezRomacH/CS361-DP-collaboration-1/blob/master/uml.png)
 
 # Design Patterns here
 Builder pattern
 
-Abstract ConverterBuilder, concrete MarkdownBuilder, HtmlBuilder
+Abstract builder: ConverterBulder
+
+Concrete builders: HtmlBuilder, MarkdownBuilder
 
 # Developers
 Roman Tezikov: 
