@@ -20,13 +20,14 @@ namespace TextConverter.Parser
         public const string OrderedList = "ordlist";
         public const string BulletedList = "bullist";
 
-        public static bool IsKeyword(string word)
+        public static readonly IReadOnlyList<string> All = new List<string> { Text, Header1, Header2, Header3, OrderedList, BulletedList };
+
+        public static bool IsKeyword(this string word)
         {
-            List<string> keywords = new List<string> { Text, Header1, Header2, Header3, OrderedList, BulletedList };
-            return keywords.Contains(word);
+            return All.Contains(word);
         }
 
-        public static bool IsArrayKeyword(string word)
+        public static bool IsArrayKeyword(this string word)
         {
             List<string> keywords = new List<string> { OrderedList, BulletedList };
             return keywords.Contains(word);

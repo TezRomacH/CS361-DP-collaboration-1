@@ -58,12 +58,16 @@
             <MenuItem Margin="3" Name="aboutMenuItem" Header="About" Click="aboutMenuItem_OnClick"/>
         </Menu>
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0" CanContentScroll="True"
-                      VerticalScrollBarVisibility="Visible"
-                      HorizontalScrollBarVisibility="Auto">
-            <TextBox Margin="5" Name="mainTextBox" Width="Auto"
-                     AcceptsReturn="True" TextChanged="mainTextBox_OnTextChanged"/>
-        </ScrollViewer>
+        <RichTextBox Grid.Row="1" Grid.Column="0" Margin="5" Name="mainTextBox" Width="Auto" 
+                     VerticalScrollBarVisibility="Visible"
+                     HorizontalScrollBarVisibility="Auto"
+                     AcceptsReturn="True" TextChanged="mainTextBox_OnTextChanged">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"></Setter>
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
 
         <ScrollViewer Grid.Row="1" Grid.Column="1" CanContentScroll="True"
                       VerticalScrollBarVisibility="Visible"

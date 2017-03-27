@@ -19,6 +19,7 @@ using TextConverter.ConverterBuilders;
 using TextConverter.Parser;
 using System.Threading;
 using System.Resources;
+using System.Text.RegularExpressions;
 
 
 namespace TextConverter
@@ -73,13 +74,22 @@ namespace TextConverter
         private void openMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             openFileDialog.Filter = Properties.Resources.ResourceManager.GetString(ResourceKeys.OpenFileFilter);
-            
+
             if (openFileDialog.ShowDialog() == true)
             {
                 try
                 {
                     saveFileDialog.FileName = null;
-                    mainTextBox.Text = File.ReadAllText(openFileDialog.FileName);
+                    string text = File.ReadAllText(openFileDialog.FileName);
+
+                    mainTextBox.Document.Blocks.Clear();
+                    TextRange tr = new TextRange(mainTextBox.Document.ContentEnd, mainTextBox.Document.ContentEnd)
+                    {
+                        Text = text
+                    };
+
+                    mainTextBox.CaretPosition = mainTextBox.Document.ContentEnd;
+                    //mainTextBox.Text = File.ReadAllText(openFileDialog.FileName);
                 }
                 catch (Exception ex)
                 {
@@ -133,7 +143,7 @@ namespace TextConverter
 
         private void langMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            
+
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(((MenuItem)sender).Tag.ToString());
             Localize();
 
@@ -200,15 +210,39 @@ namespace TextConverter
             }
         }
 
+        private bool innerChanging = false;
         private void mainTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            if (innerChanging)
+                return;
+
             UpdateConvertedText();
+
+            RichTextBox box = (RichTextBox)sender;
+            string text = new TextRange(box.Document.ContentStart, box.Document.ContentEnd).Text;
+
+            innerChanging = true;
+
+            box.Document.Blocks.Clear();
+            string pattern = KeyWords.All.Aggregate(new StringBuilder(@"\b("), (b, s) => b.Append($"{s}|"))
+                .ToString().TrimEnd('|') + @")\b";
+
+            foreach (var word in Regex.Split(text, pattern))
+            {
+                TextRange tr = new TextRange(box.Document.ContentEnd, box.Document.ContentEnd)
+                {
+                    Text = word.IsKeyword() ? Environment.NewLine + word : word
+                };
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, word.IsKeyword() ? Brushes.DodgerBlue : Brushes.Black);
+            }
+            box.CaretPosition = box.Document.ContentEnd;
+            innerChanging = false;
         }
 
         private void UpdateConvertedText()
         {
-            resultTextBox.Text = parser.Convert(builder.Clear(), mainTextBox?.Text);
+            TextRange range = new TextRange(mainTextBox.Document.ContentStart, mainTextBox.Document.ContentEnd);
+            resultTextBox.Text = parser.Convert(builder.Clear(), range.Text);
         }
-
     }
 }
