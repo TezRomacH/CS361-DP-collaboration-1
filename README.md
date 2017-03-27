@@ -9,7 +9,8 @@ Convert text from the **very special** format to common special formats such as:
 ![screenshot](https://github.com/TezRomacH/CS361-DP-collaboration-1/blob/master/TextConverter_screenshot.png)
 
 
-**The very special format of source text.** Text consists of paragraph splitted with one or more new line. Each paragrah starts with keyword and one space, and the rest of the paragraph is the text.
+**The very special format of source text.** Text consists of paragraphs splitted by one or more new lines. Each paragrah starts with keyword and one space, and the rest of the paragraph is the text.
+
 Keywords here:
 
 * ```p``` - plain text
@@ -75,11 +76,15 @@ Bulleted list:
 ![UMl Diagram](https://github.com/TezRomacH/CS361-DP-collaboration-1/blob/master/uml.png)
 
 # Design Patterns here
-Builder pattern
+Builder pattern.
 
-Abstract builder: ConverterBulder
+Builder separate the construction of a complex object from its representiong so that the same construction process can create different representations
 
-Concrete builders: HtmlBuilder, MarkdownBuilder
+Abstract interface: ConverterBulder
+
+Concrete implementations: HtmlBuilder, MarkdownBuilder
+
+The builders is the best choice from creational patterns on this case. We have an abstraction such as markup language. It consists of the "parts" - headers, plain text, lists. So we define an interface for any markup language and implement builders for concrete languages.
 
 # Developers
 Roman Tezikov: 
