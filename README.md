@@ -78,7 +78,7 @@ Bulleted list:
 # Design Patterns
 Builder pattern.
 
-Builder separate the construction of a complex object from its representiong so that the same construction process can create different representations
+Builder separates the construction of a complex object from its representiong so that the same construction process can create different representations
 
 Abstract interface: ConverterBulder
 
@@ -95,6 +95,6 @@ Roman Tezikov:
 
 Tatiana Popova:
 * implement HtmlBuilder, MarkdownBuilder
-* localize application. Supported languages: English, Russian 
 * re-think Parser design, separate converting and parsing
+* localize application. Supported languages: English, Russian 
 * write unit tests for Parser
